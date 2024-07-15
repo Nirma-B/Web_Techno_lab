@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Application Form</title>
+<style>
+  .error {
+    color: red;
+  }
+</style>
+</head>
+<body>
+  <h2>Job Application Form</h2>
+  <form id="jobApplicationForm" action="#" method="POST" enctype="multipart/form-data">
+    
+    <!-- Personal Information -->
+    <fieldset>
+      <legend>Personal Information</legend>
+      <div>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required><br/><br/>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br/><br/>
+      </div>
+      <div>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Format: 123-456-7890" required>
+        <br/><br/>
+    </div>
+    </fieldset>
+    <br/>
+    <!-- Education Details -->
+    <fieldset>
+      <legend>Education Details</legend>
+      <div>
+        <label for="university">University:</label>
+        <input type="text" id="university" name="university" required><br/><br/>
+      </div>
+      <div>
+        <label for="degree">Degree:</label>
+        <input type="text" id="degree" name="degree" required><br/><br/>
+      </div>
+      <div>
+        <label for="graduationYear">Year of Graduation:</label>
+        <input type="number" id="graduationYear" name="graduationYear" min="1900" max="2099" required><br/><br/>
+      </div>
+    </fieldset>
+    <br/>
+    <!-- Work Experience -->
+    <fieldset>
+      <legend>Work Experience</legend>
+      <div>
+        <label for="companyName">Company Name:</label>
+        <input type="text" id="companyName" name="companyName" required><br/><br/>
+      </div>
+      <div>
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" name="jobTitle" required><br/><br/>
+      </div>
+      <div>
+        <label for="workDuration">Duration of Employment:</label>
+        <input type="text" id="workDuration" name="workDuration" placeholder="e.g., May 2018 - July 2020" required><br/><br/>
+      </div>
+    </fieldset>
+    <br/>
+    <!-- Cover Letter Upload -->
+    <fieldset>
+      <legend>Cover Letter Upload</legend>
+      <div>
+        <input type="file" id="coverLetter" name="coverLetter" accept=".pdf" required><br/><br/>
+        <small>Upload a PDF file (max 5MB)</small>
+      </div>
+    </fieldset>
+    <br/>
+    <button type="submit">Submit Application</button>
+  </form>
+
+  <div id="successMessage" style="display: none;">
+    <h3>Thank you for your application!</h3>
+    <p>We have received your information.</p>
+  </div>
+  <script>
+    document.getElementById('jobApplicationForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      // Perform form validation
+      if (validateForm()) {
+        // Simulate form submission (in real use, you would submit data to a server)
+        simulateFormSubmission();
+      }
+    });
+
+    function validateForm() {
+      let isValid = true;
+      const form = document.getElementById('jobApplicationForm');
+      const fullName = form['fullName'].value;
+      const email = form['email'].value;
+      const phone = form['phone'].value;
+      const university = form['university'].value;
+      const degree = form['degree'].value;
+      const graduationYear = form['graduationYear'].value;
+      const companyName = form['companyName'].value;
+      const jobTitle = form['jobTitle'].value;
+      const workDuration = form['workDuration'].value;
+      const coverLetter = form['coverLetter'].value;
+
+      // Basic validation (you can add more specific checks as needed)
+      if (fullName.trim() === '' || email.trim() === '' || phone.trim() === '' ||
+          university.trim() === '' || degree.trim() === '' || graduationYear.trim() === '' ||
+          companyName.trim() === '' || jobTitle.trim() === '' || workDuration.trim() === '' ||
+          coverLetter.trim() === '') {
+        isValid = false;
+        alert('Please fill out all required fields.');
+      }
+
+      return isValid;
+    }
+
+    function simulateFormSubmission() {
+      // Simulate successful form submission
+      document.getElementById('jobApplicationForm').reset();
+      document.getElementById('successMessage').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
